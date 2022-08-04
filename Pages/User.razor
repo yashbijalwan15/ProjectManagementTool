@@ -1,0 +1,84 @@
+@page "/user"
+
+<PageTitle>User</PageTitle>
+
+<div style="align-items: center; display: flex; justify-content: center;">
+    <RadzenCard Style="min-width: 75%; width: fit-content; border-radius: 15px;">
+        <div style="align-items: center; display: flex; justify-content: center; margin-bottom: 15px;">
+            <RadzenGravatar Email="yashbijalwan15@gmail.com" Style="height: 100px; width: 100px;" />
+        </div>
+        <div style="align-items: center; display: flex; justify-content: center; margin-bottom: 15px;">
+            <h2 align="center">@user.name</h2>
+        </div>
+        <div class="row" style="align-items: center; margin-bottom: 10px;">
+            <div class="col">
+                <h3>Username: </h3>
+            </div>
+            <div class="col">
+                <h3>yashb</h3>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;">
+            <div class="col">
+                <h3>Email: </h3>
+            </div>
+            <div class="col">
+                <h3>@user.email</h3>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;">
+            <div class="col">
+                <h3>Phone Number: </h3>
+            </div>
+            <div class="col">
+                <h3>@user.phone_no</h3>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;">
+            <div class="col">
+                <h3>Address: </h3>
+            </div>
+            <div class="col">
+                <h3>@user.address</h3>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;">
+            <div class="col">
+                <h3>Role: </h3>
+            </div>
+            <div class="col">
+                <h3>Project Manager</h3>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;">
+            <div class="col">
+                <h3>Projects: </h3>
+            </div>
+            <div class="col">
+                <h3>DBS Lab Mini-Project</h3>
+            </div>
+        </div>
+    </RadzenCard>
+</div>
+
+@code {
+    public sealed class Users
+    {
+        public int id { get; set; }
+        public string? name { get; set; }
+        public string? phone_no { get; set; }
+        public string? email { get; set; }
+        public string? address { get; set; }
+        public int role_id {get; set; }
+        public int perm_id { get; set; }
+        public int proj_id { get; set; }
+    }
+    public Users user = new Users { id = 1,
+                                    name = "Yash Bijalwan",
+                                    phone_no = "+91 93267 30898",
+                                    email = "yashbijalwan15@gmail.com",
+                                    address = "Navi Mumbai",
+                                    role_id = 1,
+                                    perm_id = 1,
+                                    proj_id = 1,};
+}
