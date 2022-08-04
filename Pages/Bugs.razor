@@ -1,0 +1,66 @@
+@page "/bugs"
+
+<PageTitle>Bugs</PageTitle>
+
+<RadzenCard Style="width: 100%; border-radius: 15px;">
+    <h1 align="center">DBS Lab Mini-Project Bugs</h1>
+
+    <RadzenCard Style="margin-bottom: 20px; border-radius: 15px;">
+        <RadzenTextBox Placeholder="Id" @bind-Value=@newBug.bug_id Class="w-100" Style="margin-top: 10px; border-radius: 5px;" />
+        <RadzenTextBox Placeholder="Title" @bind-Value=@newBug.bug_title Class="w-100" Style="margin-top: 10px; border-radius: 5px;" />
+        <RadzenTextBox Placeholder="Description" @bind-Value=@newBug.bug_desc Class="w-100" Style="margin-top: 10px; border-radius: 5px;" />
+        <RadzenButton Click=@(args => AddBug(bugs)) Text="Add Bug" ButtonStyle="ButtonStyle.Primary" Style="margin-top: 15px; align-self: center; width: fit-content; background-color: #1b6ec2; border-radius: 5px;" />
+    </RadzenCard>
+
+    <div class="row" style="width: 100%;">
+        @foreach (var bug in bugs)
+        {
+            @if(bug.solved_dev_id == 0)
+            {
+                <div class="col" style="width: fit-content; min-width: 33%;">
+                    <RadzenCard Style="margin-bottom: 20px; border-radius: 15px;">
+                        <h3 align="center">@bug.bug_id: @bug.bug_title</h3>
+                        <p>@bug.bug_desc</p>
+                        <RadzenButton Click=@(args => CloseBug(bug)) Text="Close Bug" ButtonStyle="ButtonStyle.Primary" Style="margin-top: 15px; align-self: center; width: fit-content; background-color: #3a0647; border-radius: 5px;" />
+                    </RadzenCard>
+                </div>
+            }
+        }
+    </div>
+</RadzenCard>
+
+@code {
+    public Bug newBug = new Bug { bug_id="", bug_title="", bug_desc="", proj_id=0, found_dev_id=0, solved_dev_id=0 };
+
+    private List<Bug> bugs = new List<Bug>
+    {
+        new Bug { bug_id = "#001",
+                  bug_title = "Bug",
+                  bug_desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                  found_dev_id = 1},
+        new Bug { bug_id = "#002",
+                  bug_title = "Bug",
+                  bug_desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                  found_dev_id = 1},
+    };
+
+    private void AddBug(List<Bug> bugs)
+    {
+        if (!string.IsNullOrWhiteSpace(newBug.bug_title) && !string.IsNullOrWhiteSpace(newBug.bug_desc))
+        {
+            bugs.Add(new Bug { bug_id = newBug.bug_id,
+                               bug_title = newBug.bug_title,
+                               bug_desc = newBug.bug_desc,
+                               found_dev_id = newBug.found_dev_id });
+            newBug.bug_id = "";
+            newBug.bug_title = string.Empty;
+            newBug.bug_desc = string.Empty;
+            newBug.proj_id = 0;
+            newBug.found_dev_id = 0;
+        }
+    }
+    private void CloseBug(Bug bug)
+    {
+        bug.solved_dev_id = 1;
+    }
+}
