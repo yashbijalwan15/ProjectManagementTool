@@ -1,0 +1,108 @@
+@page "/projects"
+
+<PageTitle>Projects</PageTitle>
+
+<RadzenCard Style="margin-bottom: 20px; border-radius: 15px;">
+    <h1 align="center">Project Members</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Tasks Completed</th>
+                <th>Bugs Found</th>
+                <th>Bugs Solved</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var val in data)
+            {
+                <tr>
+                    <td>@val.name</td>
+                    <td>@val.role</td>
+                    <td>@val.comp</td>
+                    <td>@val.found</td>
+                    <td>@val.solved</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</RadzenCard>
+
+<RadzenCard Style="margin-bottom: 20px; border-radius: 15px;">
+    <h1 align="center">DBS Lab Mini-Project Tasks Progress</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-6 offset-lg-3 my-5">
+                <RadzenChart>
+                    <RadzenDonutSeries Data="@data" CategoryProperty="name" ValueProperty="comp">
+                        <TitleTemplate>
+                            <div class="rz-donut-content">
+                                <div>Project Tasks</div>
+                                <div>Completed</div>
+                            </div>
+                        </TitleTemplate>
+                    </RadzenDonutSeries>
+                </RadzenChart>
+            </div>
+        </div>
+    </div>
+</RadzenCard>
+
+<RadzenCard Style="margin-bottom: 20px; border-radius: 15px;">
+    <h1 align="center">DBS Lab Mini-Project Bugs Progress</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-6 offset-lg-3 my-5">
+                <RadzenChart>
+                    <RadzenDonutSeries Data="@data" CategoryProperty="name" ValueProperty="solved">
+                        <TitleTemplate>
+                            <div class="rz-donut-content">
+                                <div>Project Bugs</div>
+                                <div>Solved</div>
+                            </div>
+                        </TitleTemplate>
+                    </RadzenDonutSeries>
+                </RadzenChart>
+            </div>
+        </div>
+    </div>
+</RadzenCard>
+
+@code {
+    public class DataItem
+    {
+        public string? name { get; set; }
+        public string? role { get; set; }
+        public double comp { get; set; }
+        public double found { get; set; }
+        public double solved { get; set; }
+    }
+
+    DataItem[] data = new DataItem[] {
+        new DataItem
+        {
+            name = "Yash Bijalwan",
+            role = "Project Manager",
+            comp = 15,
+            found = 10,
+            solved = 10
+        },
+        new DataItem
+        {
+            name = "Pranav Chaudhari",
+            role = "Front-end Dev",
+            comp = 10,
+            found = 5,
+            solved = 5
+        },
+        new DataItem
+        {
+            name = "Om Sharma",
+            role = "Back-end Dev",
+            comp = 10,
+            found = 5,
+            solved = 5
+        },
+    };
+}
