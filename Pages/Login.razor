@@ -1,0 +1,65 @@
+@page "/login"
+
+@inject NavigationManager NavigationManager
+
+@layout NoNavLayout
+
+<PageTitle>Login</PageTitle>
+
+
+<div style="align-items: center; display: flex; justify-content: center;">
+    <RadzenCard Style="max-width: 100%; width: fit-content; border-radius: 15px;">
+        <h2 align="center">Login</h2>
+        <RadzenTemplateForm Data=@("LoginWithRegisterAndReset")>
+            <RadzenLogin Login=@(args => OnLogin(args, "Login with register and password reset"))
+                         ResetPassword=@(args => OnResetPassword(args, "Login with register and password reset"))
+                         Register=@(args => OnRegister("Login with register and password reset")) />
+        </RadzenTemplateForm>
+    </RadzenCard>
+</div>
+
+@code {
+    string userName = "yashb";
+    string password = "admin";
+    public bool isLogin = false;
+    public class Users
+    {
+        public int id { get; set; }
+        public string? name { get; set; }
+        public string? phone_no { get; set; }
+        public string? email { get; set; }
+        public string? address { get; set; }
+        public int role_id {get; set; }
+        public int perm_id { get; set; }
+        public int proj_id { get; set; }
+    }
+
+    public Users user = new();
+
+    void OnLogin(LoginArgs args, string name)
+    {
+        if(args.Username == userName && args.Password == password)
+        {
+            user.id = 1;
+            user.name = "Yash Bijalwan";
+            user.phone_no = "+91 93267 30898";
+            user.email = "yashbijalwan15@gmail.com";
+            user.address = "Navi Mumbai";
+            user.role_id = 1;
+            user.perm_id = 1;
+            user.proj_id = 1;
+            isLogin = true;
+            NavigationManager.NavigateTo("/");
+        }
+    }
+
+    void OnRegister(string name)
+    {
+        NavigationManager.NavigateTo("/register");
+    }
+
+    void OnResetPassword(string value, string name)
+    {
+        NavigationManager.NavigateTo("/resetpassword");
+    }
+}
