@@ -1,5 +1,7 @@
 /* /Shared/MainLayout.razor.rz.scp.css */
 .page[b-onk10yif4u] {
+    height: 100%;
+    width: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -28,14 +30,14 @@ main[b-onk10yif4u] {
         text-decoration: none;
     }
 
-    .top-row[b-onk10yif4u]  a:hover, .top-row[b-onk10yif4u]  .btn-link:hover {
-        text-decoration: underline;
-    }
+        .top-row[b-onk10yif4u]  a:hover, .top-row[b-onk10yif4u]  .btn-link:hover {
+            text-decoration: underline;
+        }
 
-    .top-row[b-onk10yif4u]  a:first-child {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+        .top-row[b-onk10yif4u]  a:first-child {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
 @media (max-width: 640.98px) {
     .top-row:not(.auth)[b-onk10yif4u] {
@@ -69,11 +71,11 @@ main[b-onk10yif4u] {
         z-index: 1;
     }
 
-    .top-row.auth[b-onk10yif4u]  a:first-child {
-        flex: 1;
-        text-align: right;
-        width: 0;
-    }
+        .top-row.auth[b-onk10yif4u]  a:first-child {
+            flex: 1;
+            text-align: right;
+            width: 0;
+        }
 
     .top-row[b-onk10yif4u], article[b-onk10yif4u] {
         padding-left: 2rem !important;
@@ -92,6 +94,7 @@ main[b-onk10yif4u] {
 
 .navbar-brand[b-l1lmvmfj2o] {
     font-size: 1.1rem;
+    text-decoration: none;
 }
 
 .oi[b-l1lmvmfj2o] {
@@ -123,15 +126,16 @@ main[b-onk10yif4u] {
         line-height: 3rem;
     }
 
-.nav-item[b-l1lmvmfj2o]  a.active {
-    background-color: rgba(255,255,255,0.25);
-    color: white;
-}
+        .nav-item[b-l1lmvmfj2o]  a.active {
+            background-color: rgba(255,255,255,0.25);
+            color: white;
+        }
 
-.nav-item[b-l1lmvmfj2o]  a:hover {
-    background-color: rgba(255,255,255,0.1);
-    color: white;
-}
+        .nav-item[b-l1lmvmfj2o]  a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            text-decoration: none;
+        }
 
 @media (min-width: 641px) {
     .navbar-toggler[b-l1lmvmfj2o] {
