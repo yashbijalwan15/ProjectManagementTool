@@ -1,0 +1,86 @@
+@page "/tasks"
+
+<PageTitle>Tasks</PageTitle>
+
+<RadzenCard Style="width: 100%; border-radius: 15px;">
+    <h1 align="center">DBS Lab Mini-Project Tasks</h1>
+
+    <div class="row">
+        <div class="col">
+            <RadzenCard Style="width: 100%; margin-bottom: 20px; border-radius: 15px;">
+                <h1 align="center">Front-end</h1>
+                @foreach (var todo in front)
+                {
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <RadzenCheckBox @bind-Value=@todo.IsDone Name="CheckBox1" TValue="bool" />
+                        </div>
+                        <div class="col">
+                            <RadzenLabel Text=@todo.Title Component="CheckBox1" />
+                        </div>
+                    </div>
+                }
+                <RadzenTextBox Placeholder="Task Todo" @bind-Value=@newTodo Class="w-100" Style="margin-top: 10px; border-radius: 5px;" />
+                <RadzenButton Click=@(args => AddTodo(front)) Text="Add Todo" ButtonStyle="ButtonStyle.Primary" Style="margin-top: 15px; align-self: center; width: fit-content; background-color: #1b6ec2; border-radius: 5px;" />
+            </RadzenCard>
+        </div>
+        
+        <div class="col">
+            <RadzenCard Style="width: 100%; margin-bottom: 20px; border-radius: 15px;">
+                <h1 align="center">Back-end</h1>
+                @foreach (var todo in back)
+                {
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <RadzenCheckBox @bind-Value=@todo.IsDone Name="CheckBox1" TValue="bool" />
+                        </div>
+                        <div class="col">
+                            <RadzenLabel Text=@todo.Title Component="CheckBox1" />
+                        </div>
+                    </div>
+                }
+                <RadzenTextBox Placeholder="Task Todo" @bind-Value=@newTodo Class="w-100" Style="margin-top: 10px; border-radius: 5px;" />
+                <RadzenButton Click=@(args => AddTodo(back)) Text="Add todo" ButtonStyle="ButtonStyle.Primary" Style="margin-top: 15px; align-self: center; width: fit-content; background-color: #1b6ec2; border-radius: 5px;" />
+            </RadzenCard>
+        </div>
+    </div>
+</RadzenCard>
+
+@code {
+    public class TodoItem
+    {
+        public string? Title { get; set; }
+        public bool IsDone { get; set; }
+    }
+
+    private List<TodoItem> front = new List<TodoItem>
+    {
+        new TodoItem {Title="Design Home page", IsDone=true},
+        new TodoItem {Title="Design Login page", IsDone=true},
+        new TodoItem {Title="Design About page", IsDone=true},
+        new TodoItem {Title="Design Tasks page", IsDone=true},
+        new TodoItem {Title="Design Project page", IsDone=true},
+        new TodoItem {Title="Design Bugs page", IsDone=true},
+        new TodoItem {Title="Design User page", IsDone=true},
+        new TodoItem {Title="Design Logo", IsDone=true}
+    };
+
+    private List<TodoItem> back = new List<TodoItem>
+    {
+        new TodoItem {Title="Create Database", IsDone=true},
+        new TodoItem {Title="Create Tables", IsDone=true},
+        new TodoItem {Title="Insert values into Tables", IsDone=true},
+        new TodoItem {Title="Write Queries for operations", IsDone=true},
+        new TodoItem {Title="Connect database to front-end", IsDone=true}
+    };
+    private string? newTodo;
+
+    private void AddTodo(List<TodoItem> todos)
+    {
+        if (!string.IsNullOrWhiteSpace(newTodo))
+        {
+            todos.Add(new TodoItem { Title = newTodo });
+            newTodo = string.Empty;
+        }
+    }
+}
